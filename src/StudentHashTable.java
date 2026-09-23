@@ -5,7 +5,7 @@ public class StudentHashTable {
 
     // Special marker for deleted positions
     private final Student DELETED =
-            new Student(-1, "DELETED", "NONE", 0);
+            new Student("__DELETED__", "DELETED", "NONE", 0);
 
     // Constructor
     public StudentHashTable(int size) {
@@ -14,8 +14,8 @@ public class StudentHashTable {
     }
 
     // Hash function
-    private int hashFunction(int studentId) {
-        return studentId % tableSize;
+    private int hashFunction(String studentId) {
+        return Math.abs(studentId.hashCode()) % tableSize;
     }
 
     // Insert student into Hash Table
@@ -28,7 +28,9 @@ public class StudentHashTable {
         while (hashTable[index] != null && hashTable[index] != DELETED) {
 
             // Check duplicate Student ID
-            if (hashTable[index].getStudentId() == student.getStudentId()) {
+            if (hashTable[index].getStudentId()
+                    .equals(student.getStudentId())) {
+
                 System.out.println(
                         "Student ID already exists in Hash Table."
                 );
@@ -52,16 +54,15 @@ public class StudentHashTable {
     }
 
     // Search student using Student ID
-    public Student search(int studentId) {
+    public Student search(String studentId) {
 
         int index = hashFunction(studentId);
         int startIndex = index;
 
         while (hashTable[index] != null) {
 
-            // Ignore deleted positions
             if (hashTable[index] != DELETED &&
-                    hashTable[index].getStudentId() == studentId) {
+                    hashTable[index].getStudentId().equals(studentId)) {
 
                 return hashTable[index];
             }
@@ -77,7 +78,7 @@ public class StudentHashTable {
     }
 
     // Delete student from Hash Table
-    public void delete(int studentId) {
+    public void delete(String studentId) {
 
         int index = hashFunction(studentId);
         int startIndex = index;
@@ -85,7 +86,7 @@ public class StudentHashTable {
         while (hashTable[index] != null) {
 
             if (hashTable[index] != DELETED &&
-                    hashTable[index].getStudentId() == studentId) {
+                    hashTable[index].getStudentId().equals(studentId)) {
 
                 hashTable[index] = DELETED;
 
