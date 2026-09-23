@@ -1,44 +1,111 @@
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        // Create BST
-        StudentBST studentBST = new StudentBST();
+        Scanner input = new Scanner(System.in);
+        StudentLinkedList studentList = new StudentLinkedList();
 
-        // Create sample students
-        Student s1 = new Student(105, "Kamal", "IT", 75.5);
-        Student s2 = new Student(101, "Nimal", "Software Engineering", 82.0);
-        Student s3 = new Student(110, "Ahamed", "IT", 68.5);
-        Student s4 = new Student(103, "Fathima", "Data Science", 91.0);
+        int choice;
 
-        // Insert students into BST
-        studentBST.insert(s1);
-        studentBST.insert(s2);
-        studentBST.insert(s3);
-        studentBST.insert(s4);
+        do {
+            System.out.println("\n======================================");
+            System.out.println(" University Student Record Management ");
+            System.out.println("======================================");
+            System.out.println("1. Add Student Record");
+            System.out.println("2. Update Student Record");
+            System.out.println("3. Delete Student Record");
+            System.out.println("4. Search Student Record");
+            System.out.println("5. Display All Student Records");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
 
-        // Display before deletion
-        System.out.println("\n=== BEFORE DELETION ===");
-        studentBST.displayStudents();
+            choice = input.nextInt();
+            input.nextLine(); // Clear buffer
 
-        // Delete Student ID 101
-        System.out.println("\n=== DELETE STUDENT 101 ===");
-        studentBST.delete(101);
+            switch (choice) {
 
-        // Display after deletion
-        System.out.println("\n=== AFTER DELETION ===");
-        studentBST.displayStudents();
+                case 1:
+                    System.out.print("Enter Student ID: ");
+                    String id = input.nextLine();
 
-        // Search for deleted student
-        System.out.println("\n=== SEARCH DELETED STUDENT 101 ===");
+                    System.out.print("Enter Student Name: ");
+                    String name = input.nextLine();
 
-        Student foundStudent = studentBST.search(101);
+                    System.out.print("Enter Programme: ");
+                    String programme = input.nextLine();
 
-        if (foundStudent != null) {
-            System.out.println("Student found:");
-            foundStudent.displayStudent();
-        } else {
-            System.out.println("Student not found.");
-        }
+                    System.out.print("Enter Marks: ");
+                    double marks = input.nextDouble();
+                    input.nextLine();
+
+                    if (marks < 0 || marks > 100) {
+                        System.out.println("Invalid Marks! Enter between 0 and 100.");
+                        break;
+                    }
+
+                    Student student = new Student(id, name, programme, marks);
+                    studentList.addStudent(student);
+                    break;
+
+                case 2:
+                    System.out.print("Enter Student ID to Update: ");
+                    id = input.nextLine();
+
+                    System.out.print("Enter New Name: ");
+                    name = input.nextLine();
+
+                    System.out.print("Enter New Programme: ");
+                    programme = input.nextLine();
+
+                    System.out.print("Enter New Marks: ");
+                    marks = input.nextDouble();
+                    input.nextLine();
+
+                    if (marks < 0 || marks > 100) {
+                        System.out.println("Invalid Marks! Enter between 0 and 100.");
+                        break;
+                    }
+
+                    studentList.updateStudent(id, name, programme, marks);
+                    break;
+
+                case 3:
+                    System.out.print("Enter Student ID to Delete: ");
+                    id = input.nextLine();
+
+                    studentList.deleteStudent(id);
+                    break;
+
+                case 4:
+                    System.out.print("Enter Student ID to Search: ");
+                    id = input.nextLine();
+
+                    Student found = studentList.searchStudent(id);
+
+                    if (found != null) {
+                        System.out.println("\nStudent Found:");
+                        System.out.println(found);
+                    } else {
+                        System.out.println("Student not found.");
+                    }
+                    break;
+
+                case 5:
+                    studentList.displayStudents();
+                    break;
+
+                case 6:
+                    System.out.println("Exiting Student Management System...");
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice! Please try again.");
+            }
+
+        } while (choice != 6);
+
+        input.close();
     }
 }
