@@ -61,7 +61,6 @@ public class StudentHashTable {
 
         while (hashTable[index] != null) {
 
-            // Ignore deleted positions
             if (hashTable[index] != DELETED &&
                     hashTable[index].getStudentId().equals(studentId)) {
 

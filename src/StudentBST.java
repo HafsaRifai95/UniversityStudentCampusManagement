@@ -2,7 +2,6 @@ public class StudentBST {
 
     private StudentTreeNode root;
 
-    // Constructor
     public StudentBST() {
         root = null;
     }
@@ -16,11 +15,18 @@ public class StudentBST {
             StudentTreeNode current,
             Student student) {
 
-        // Create a new node
         if (current == null) {
             System.out.println("Student added to BST successfully.");
             return new StudentTreeNode(student);
         }
+
+ fix-student-data-structures
+        // Compare Student IDs as Strings
+        if (student.getStudentId().compareTo(current.student.getStudentId()) < 0) {
+
+            current.left = insertRecursive(current.left, student);
+
+        } else if (student.getStudentId().compareTo(current.student.getStudentId()) > 0) {
 
         // Compare Student IDs
         int comparison = student.getStudentId()
@@ -34,12 +40,11 @@ public class StudentBST {
         }
         // Larger Student ID goes to the right
         else if (comparison > 0) {
+ main
 
             current.right = insertRecursive(current.right, student);
 
-        }
-        // Duplicate Student ID
-        else {
+        } else {
 
             System.out.println("Student ID already exists in BST.");
         }
@@ -56,25 +61,31 @@ public class StudentBST {
             StudentTreeNode current,
             String studentId) {
 
-        // Student not found
         if (current == null) {
             return null;
         }
+
+ fix-student-data-structures
+        int comparison = studentId.compareTo(current.student.getStudentId());
+
 
         int comparison = studentId
                 .compareTo(current.student.getStudentId());
 
         // Student found
+ main
         if (comparison == 0) {
             return current.student;
         }
 
+ fix-student-data-structures
+
         // Search left subtree
+ main
         if (comparison < 0) {
             return searchRecursive(current.left, studentId);
         }
 
-        // Search right subtree
         return searchRecursive(current.right, studentId);
     }
 
@@ -91,18 +102,14 @@ public class StudentBST {
         inOrderTraversal(root);
     }
 
-    // In-order traversal
     private void inOrderTraversal(StudentTreeNode current) {
 
         if (current != null) {
 
-            // Left
             inOrderTraversal(current.left);
 
-            // Root
             current.student.displayStudent();
 
-            // Right
             inOrderTraversal(current.right);
         }
     }
@@ -110,7 +117,6 @@ public class StudentBST {
     // Delete a student from BST
     public void delete(String studentId) {
 
-        // Check whether student exists first
         if (search(studentId) == null) {
             System.out.println("Student not found in BST.");
             return;
@@ -129,10 +135,15 @@ public class StudentBST {
             return null;
         }
 
+ fix-student-data-structures
+        int comparison = studentId.compareTo(current.student.getStudentId());
+
+
         int comparison = studentId
                 .compareTo(current.student.getStudentId());
 
         // Search left subtree
+ main
         if (comparison < 0) {
 
             current.left = deleteRecursive(
@@ -140,30 +151,32 @@ public class StudentBST {
                     studentId
             );
 
+ fix-student-data-structures
+        } else if (comparison > 0) {
+
         }
         // Search right subtree
         else if (comparison > 0) {
+ main
 
             current.right = deleteRecursive(
                     current.right,
                     studentId
             );
 
-        }
-        // Student found
-        else {
+        } else {
 
-            // Case 1: No left child
+            // No left child
             if (current.left == null) {
                 return current.right;
             }
 
-            // Case 2: No right child
+            // No right child
             if (current.right == null) {
                 return current.left;
             }
 
-            // Case 3: Two children
+            // Two children
             StudentTreeNode smallestNode =
                     findSmallest(current.right);
 
