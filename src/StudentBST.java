@@ -22,14 +22,18 @@ public class StudentBST {
             return new StudentTreeNode(student);
         }
 
+        // Compare Student IDs
+        int comparison = student.getStudentId()
+                .compareTo(current.student.getStudentId());
+
         // Smaller Student ID goes to the left
-        if (student.getStudentId() < current.student.getStudentId()) {
+        if (comparison < 0) {
 
             current.left = insertRecursive(current.left, student);
 
         }
         // Larger Student ID goes to the right
-        else if (student.getStudentId() > current.student.getStudentId()) {
+        else if (comparison > 0) {
 
             current.right = insertRecursive(current.right, student);
 
@@ -44,26 +48,29 @@ public class StudentBST {
     }
 
     // Search for a student using Student ID
-    public Student search(int studentId) {
+    public Student search(String studentId) {
         return searchRecursive(root, studentId);
     }
 
     private Student searchRecursive(
             StudentTreeNode current,
-            int studentId) {
+            String studentId) {
 
         // Student not found
         if (current == null) {
             return null;
         }
 
+        int comparison = studentId
+                .compareTo(current.student.getStudentId());
+
         // Student found
-        if (studentId == current.student.getStudentId()) {
+        if (comparison == 0) {
             return current.student;
         }
 
         // Search left subtree
-        if (studentId < current.student.getStudentId()) {
+        if (comparison < 0) {
             return searchRecursive(current.left, studentId);
         }
 
@@ -101,7 +108,7 @@ public class StudentBST {
     }
 
     // Delete a student from BST
-    public void delete(int studentId) {
+    public void delete(String studentId) {
 
         // Check whether student exists first
         if (search(studentId) == null) {
@@ -116,14 +123,17 @@ public class StudentBST {
 
     private StudentTreeNode deleteRecursive(
             StudentTreeNode current,
-            int studentId) {
+            String studentId) {
 
         if (current == null) {
             return null;
         }
 
+        int comparison = studentId
+                .compareTo(current.student.getStudentId());
+
         // Search left subtree
-        if (studentId < current.student.getStudentId()) {
+        if (comparison < 0) {
 
             current.left = deleteRecursive(
                     current.left,
@@ -132,7 +142,7 @@ public class StudentBST {
 
         }
         // Search right subtree
-        else if (studentId > current.student.getStudentId()) {
+        else if (comparison > 0) {
 
             current.right = deleteRecursive(
                     current.right,
