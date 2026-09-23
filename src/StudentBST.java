@@ -20,12 +20,27 @@ public class StudentBST {
             return new StudentTreeNode(student);
         }
 
+ fix-student-data-structures
         // Compare Student IDs as Strings
         if (student.getStudentId().compareTo(current.student.getStudentId()) < 0) {
 
             current.left = insertRecursive(current.left, student);
 
         } else if (student.getStudentId().compareTo(current.student.getStudentId()) > 0) {
+
+        // Compare Student IDs
+        int comparison = student.getStudentId()
+                .compareTo(current.student.getStudentId());
+
+        // Smaller Student ID goes to the left
+        if (comparison < 0) {
+
+            current.left = insertRecursive(current.left, student);
+
+        }
+        // Larger Student ID goes to the right
+        else if (comparison > 0) {
+ main
 
             current.right = insertRecursive(current.right, student);
 
@@ -50,12 +65,23 @@ public class StudentBST {
             return null;
         }
 
+ fix-student-data-structures
         int comparison = studentId.compareTo(current.student.getStudentId());
 
+
+        int comparison = studentId
+                .compareTo(current.student.getStudentId());
+
+        // Student found
+ main
         if (comparison == 0) {
             return current.student;
         }
 
+ fix-student-data-structures
+
+        // Search left subtree
+ main
         if (comparison < 0) {
             return searchRecursive(current.left, studentId);
         }
@@ -109,8 +135,15 @@ public class StudentBST {
             return null;
         }
 
+ fix-student-data-structures
         int comparison = studentId.compareTo(current.student.getStudentId());
 
+
+        int comparison = studentId
+                .compareTo(current.student.getStudentId());
+
+        // Search left subtree
+ main
         if (comparison < 0) {
 
             current.left = deleteRecursive(
@@ -118,7 +151,13 @@ public class StudentBST {
                     studentId
             );
 
+ fix-student-data-structures
         } else if (comparison > 0) {
+
+        }
+        // Search right subtree
+        else if (comparison > 0) {
+ main
 
             current.right = deleteRecursive(
                     current.right,
