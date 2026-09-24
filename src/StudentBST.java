@@ -6,7 +6,6 @@ public class StudentBST {
         root = null;
     }
 
-    // Insert a student
     public void insert(Student student) {
         root = insertRecursive(root, student);
     }
@@ -20,27 +19,11 @@ public class StudentBST {
             return new StudentTreeNode(student);
         }
 
- fix-student-data-structures
-        // Compare Student IDs as Strings
         if (student.getStudentId().compareTo(current.student.getStudentId()) < 0) {
 
             current.left = insertRecursive(current.left, student);
 
         } else if (student.getStudentId().compareTo(current.student.getStudentId()) > 0) {
-
-        // Compare Student IDs
-        int comparison = student.getStudentId()
-                .compareTo(current.student.getStudentId());
-
-        // Smaller Student ID goes to the left
-        if (comparison < 0) {
-
-            current.left = insertRecursive(current.left, student);
-
-        }
-        // Larger Student ID goes to the right
-        else if (comparison > 0) {
- main
 
             current.right = insertRecursive(current.right, student);
 
@@ -52,7 +35,6 @@ public class StudentBST {
         return current;
     }
 
-    // Search for a student using Student ID
     public Student search(String studentId) {
         return searchRecursive(root, studentId);
     }
@@ -65,23 +47,12 @@ public class StudentBST {
             return null;
         }
 
- fix-student-data-structures
         int comparison = studentId.compareTo(current.student.getStudentId());
 
-
-        int comparison = studentId
-                .compareTo(current.student.getStudentId());
-
-        // Student found
- main
         if (comparison == 0) {
             return current.student;
         }
 
- fix-student-data-structures
-
-        // Search left subtree
- main
         if (comparison < 0) {
             return searchRecursive(current.left, studentId);
         }
@@ -89,7 +60,6 @@ public class StudentBST {
         return searchRecursive(current.right, studentId);
     }
 
-    // Display all students using in-order traversal
     public void displayStudents() {
 
         if (root == null) {
@@ -114,7 +84,6 @@ public class StudentBST {
         }
     }
 
-    // Delete a student from BST
     public void delete(String studentId) {
 
         if (search(studentId) == null) {
@@ -135,15 +104,8 @@ public class StudentBST {
             return null;
         }
 
- fix-student-data-structures
         int comparison = studentId.compareTo(current.student.getStudentId());
 
-
-        int comparison = studentId
-                .compareTo(current.student.getStudentId());
-
-        // Search left subtree
- main
         if (comparison < 0) {
 
             current.left = deleteRecursive(
@@ -151,13 +113,7 @@ public class StudentBST {
                     studentId
             );
 
- fix-student-data-structures
         } else if (comparison > 0) {
-
-        }
-        // Search right subtree
-        else if (comparison > 0) {
- main
 
             current.right = deleteRecursive(
                     current.right,
@@ -166,17 +122,14 @@ public class StudentBST {
 
         } else {
 
-            // No left child
             if (current.left == null) {
                 return current.right;
             }
 
-            // No right child
             if (current.right == null) {
                 return current.left;
             }
 
-            // Two children
             StudentTreeNode smallestNode =
                     findSmallest(current.right);
 
@@ -191,7 +144,6 @@ public class StudentBST {
         return current;
     }
 
-    // Find smallest node
     private StudentTreeNode findSmallest(
             StudentTreeNode current) {
 

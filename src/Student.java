@@ -5,10 +5,6 @@ public class Student {
     private String programme;
     private double marks;
 
- fix-student-data-structures
-
-    // Constructor
- main
     public Student(String studentId, String name, String programme, double marks) {
         this.studentId = studentId;
         this.name = name;
@@ -16,10 +12,6 @@ public class Student {
         this.marks = marks;
     }
 
- fix-student-data-structures
-
-    // Getters
- main
     public String getStudentId() {
         return studentId;
     }
@@ -36,10 +28,6 @@ public class Student {
         return marks;
     }
 
- fix-student-data-structures
-
-    // Setters
- main
     public void setName(String name) {
         this.name = name;
     }
@@ -52,10 +40,6 @@ public class Student {
         this.marks = marks;
     }
 
- fix-student-data-structures
-
-    // Display student details
- main
     public void displayStudent() {
         System.out.println("Student ID : " + studentId);
         System.out.println("Name       : " + name);
