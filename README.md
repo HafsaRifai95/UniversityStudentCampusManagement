@@ -17,9 +17,9 @@ The system manages university student records and campus routes using multiple d
 | Student ID   | Name            | Responsibility                                                      |
 | ------------ | --------------- | ------------------------------------------------------------------- |
 | 23DA2-1073   | Nuha Najeem     | Member 1 – Linked List implementation and Student Record Management |
-| [23DA2-0792] | [Mirza Mazahir] | Member 2 – Stack and Queue implementation                           |
-| [23DA2-0584] | [Ilma Aun Moulana] | Member 3 – BST/AVL Tree and Hashing                                 |
-| [23DA2-0952] | [Hafsa Rifai] | Member 4 – Graph implementation and BFS/DFS traversal               |
+| 23DA2-0792 | Mirza Mazahir | Member 2 – Stack and Queue implementation                           |
+| 23DA2-0584 | Ilma Aun Moulana | Member 3 – BST/AVL Tree and Hashing                                 |
+| 23DA2-0952 | Hafsa Rifa] | Member 4 – Graph implementation and BFS/DFS traversal               |
 
 ---
 
